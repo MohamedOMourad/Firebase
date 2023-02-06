@@ -13,7 +13,7 @@ import {
  query,
  where,
 } from "firebase/firestore";
-function App() {
+function Queries() {
  const emailRef = useRef();
  const passwordRef = useRef();
  const collectionRef = collection(database, "Users");
@@ -71,4 +71,4 @@ function App() {
  );
 }
 
-export default App;
+export default Queries;

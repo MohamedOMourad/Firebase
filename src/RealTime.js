@@ -10,22 +10,17 @@ import {
  updateDoc,
  deleteDoc,
  onSnapshot,
- query,
- where,
 } from "firebase/firestore";
-function App() {
+function RealTime() {
  const emailRef = useRef();
  const passwordRef = useRef();
  const collectionRef = collection(database, "Users");
-
- const ageQuery = query(collectionRef, where("age", ">", 24));
 
  const handleSubmit = async () => {
   try {
    const response = await addDoc(collectionRef, {
     email: emailRef.current.value,
     password: passwordRef.current.value,
-    age: 20,
    });
    alert("user created");
   } catch (error) {
@@ -36,7 +31,7 @@ function App() {
  const getUsers = () => {
   try {
    //    const response = await getDocs(collectionRef);
-   onSnapshot(ageQuery, (data) => {
+   onSnapshot(collectionRef, (data) => {
     const docs = data.docs;
     console.log(docs.map((item) => item.data()));
    });
@@ -71,4 +66,4 @@ function App() {
  );
 }
 
-export default App;
+export default RealTime;
